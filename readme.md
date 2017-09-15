@@ -23,6 +23,7 @@ Then open the folder in your command line, and install the needed dependencies:
 
 ```bash
 cd projectname
+rm -rf .git
 npm install
 ```
 
