@@ -1,0 +1,179 @@
+@mixin fts($fts, $lin: 24) {
+  $linS: $lin / $fts;
+  font-size: #{$fts}px;
+  font-size: rem-calc($fts);
+  line-height: $linS;
+}
+
+@mixin letter-spacing($sizeValue: .08){
+  letter-spacing: ($sizeValue * 10) + px; // rem未対応ブラウザのfallback
+  letter-spacing: $sizeValue + rem;
+}
+
+@mixin ellipsis($ellipsis: 1) {
+  overflow: hidden;
+  width: 100%;
+  > * {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: $ellipsis;
+  }
+}
+
+@mixin boxInlineBlock($va:middle) {
+  letter-spacing: -0.3em;
+  width: 100%;
+  > * {
+    display:inline-block;
+    letter-spacing: normal;
+    vertical-align: $va;
+  }
+}
+
+@mixin boxTable($va:middle) {
+  display: table;
+  width: 100%;
+  > * {
+    display: table-cell;
+    vertical-align: $va;
+  }
+}
+
+@mixin rotate($deg) {
+  -moz-transform: rotate(#{$deg}deg);
+  -webkit-transform: rotate(#{$deg}deg);
+  -o-transform: rotate(#{$deg}deg);
+  -ms-transform: rotate(#{$deg}deg);
+  transform: rotate(#{$deg}deg);
+}
+
+@mixin vertical-text() {
+  -moz-writing-mode: vertical-rl;
+  -webkit-writing-mode: vertical-rl;
+  -o-writing-mode: vertical-rl;
+  -ms-writing-mode: vertical-rl;
+  writing-mode: vertical-rl;
+}
+
+@mixin setTransition($property: all) {
+  -webkit-transition: $property 0.2s ease-in-out;
+  -moz-transition: $property 0.2s ease-in-out;
+  -ms-transition: $property 0.2s ease-in-out;
+  -o-transition: $property 0.2s ease-in-out;
+  transition: $property 0.2s ease-in-out;
+}
+
+@mixin setTransitionSlow($property: all) {
+  -webkit-transition: $property 1.5s ease-in-out;
+  -moz-transition: $property 1.5s ease-in-out;
+  -ms-transition: $property 1.5s ease-in-out;
+  -o-transition: $property 1.5s ease-in-out;
+  transition: $property 1.5s ease-in-out;
+}
+
+@mixin setTransitionMedium($property: all) {
+  -webkit-transition: $property 0.5s ease-in-out;
+  -moz-transition: $property 0.5s ease-in-out;
+  -ms-transition: $property 0.5s ease-in-out;
+  -o-transition: $property 0.5s ease-in-out;
+  transition: $property 0.5s ease-in-out;
+}
+
+@mixin filter-blur($val) {
+  filter: blur(#{$val}px) brightness(0.9);
+  -webkit-filter: blur(#{$val}px) brightness(0.9);
+  -moz-filter: blur(#{$val}px) brightness(0.9);
+  -o-filter: blur(#{$val}px) brightness(0.9);
+  -ms-filter: blur(#{$val}px) brightness(0.9);
+}
+
+
+@mixin translateZ($px) {
+  -webkit-transform: translateZ($px);
+  -moz-transform: translateZ($px);
+  -ms-transform: translateZ($px);
+  -o-transform: translateZ($px);
+  transform: translateZ($px);
+}
+
+@mixin keyframes($animation-name) {
+  @-webkit-keyframes #{$animation-name} {
+    @content;
+  }
+  @-moz-keyframes #{$animation-name} {
+    @content;
+  }
+  @-ms-keyframes #{$animation-name} {
+    @content;
+  }
+  @keyframes #{$animation-name} {
+    @content;
+  }
+}
+
+@mixin gradient($start-color, $end-color, $orientation) {
+  background: $start-color;
+  @if $orientation == vertical {
+    // vertical
+    background: -moz-linear-gradient(top,  $start-color 0%, $end-color 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$start-color), color-stop(100%,$end-color));
+    background: -webkit-linear-gradient(top,  $start-color 0%,$end-color 100%);
+    background: -o-linear-gradient(top,  $start-color 0%,$end-color 100%);
+    background: -ms-linear-gradient(top,  $start-color 0%,$end-color 100%);
+    background: linear-gradient(to bottom,  $start-color 0%,$end-color 100%);
+  }
+  @else if $orientation == horizontal {
+    // horizontal
+    background: -moz-linear-gradient(left,  $start-color 0%, $end-color 100%);
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%,$start-color), color-stop(100%,$end-color));
+    background: -webkit-linear-gradient(left,  $start-color 0%,$end-color 100%);
+    background: -o-linear-gradient(left,  $start-color 0%,$end-color 100%);
+    background: -ms-linear-gradient(left,  $start-color 0%,$end-color 100%);
+    background: linear-gradient(to right,  $start-color 0%,$end-color 100%);
+  }
+  @else {
+    // radial
+    background: -moz-radial-gradient(center, ellipse cover,  $start-color 0%, $end-color 100%);
+    background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,$start-color), color-stop(100%,$end-color));
+    background: -webkit-radial-gradient(center, ellipse cover,  $start-color 0%,$end-color 100%);
+    background: -o-radial-gradient(center, ellipse cover,  $start-color 0%,$end-color 100%);
+    background: -ms-radial-gradient(center, ellipse cover,  $start-color 0%,$end-color 100%);
+    background: radial-gradient(ellipse at center,  $start-color 0%,$end-color 100%);
+  }
+}
+
+
+@mixin enableGPU {
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  backface-visibility: hidden;
+
+  -webkit-perspective: 1000px;
+  -moz-perspective: 1000px;
+  -ms-perspective: 1000px;
+  perspective: 1000px;
+}
+
+@mixin retina {
+  @media screen and (min-resolution: 2dppx){
+    @content;
+  }
+}
+
+@mixin IE11 {
+  @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    @content;
+  }
+}
+
+@mixin edge {
+  @supports (-ms-ime-align:auto) {
+    @content;
+  }
+}

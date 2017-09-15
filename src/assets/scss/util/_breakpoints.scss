@@ -1,0 +1,25 @@
+@mixin xsmall {
+  @media screen and #{breakpoint(xsmall)} {
+    @content;
+  }
+}
+@mixin medium {
+  @media screen and #{breakpoint(medium)} {
+    @content;
+  }
+}
+@mixin xmedium {
+  @media screen and #{breakpoint(xmedium)} {
+    @content;
+  }
+}
+@mixin large {
+  @media screen and #{breakpoint(large)} {
+    @content;
+  }
+}
+@mixin xlarge {
+  @media screen and #{breakpoint(xlarge)} {
+    @content;
+  }
+}

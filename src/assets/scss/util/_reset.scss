@@ -1,0 +1,36 @@
+/* Reset ▼
+-------------------------------- */
+body {
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+	font-feature-settings: "palt";
+
+	letter-spacing: 0.1rem;
+	margin-top: 0;
+	background-color: $white;
+	color: $black;
+
+	&.no_scroll { overflow: hidden; }
+
+	@include IE11 {
+		font-feature-settings: normal;
+	}
+
+	@include edge {
+		font-feature-settings: "palt";
+	}
+}
+
+a, a:hover, a:active, a:focus,
+button, button:hover, button:active, button:focus { outline: 0; -webkit-tap-highlight-color: rgba(255, 255, 255, 0); }
+
+ul {
+	padding: 0;
+	margin: 0;
+}
+
+li{
+	list-style-type: none;
+	list-style-position: outside;
+	padding: 0;
+}

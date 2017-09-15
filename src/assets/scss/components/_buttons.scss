@@ -1,0 +1,52 @@
+.button {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 0 1rem 0;
+  font-family: inherit;
+  padding: 0.85em 1em;
+  -webkit-appearance: none;
+  border: 1px solid transparent;
+  border-radius: 0;
+  transition: background-color 0.25s ease-out, color 0.25s ease-out;
+  font-size: 0.9rem;
+  line-height: 1;
+  text-align: center;
+  cursor: pointer;
+  background-color: $blue_01;
+  color: $white;
+  outline: 0;
+  @include setTransition;
+
+  &:hover, &:active {
+    background-color: $blue_02;
+    color: $white;
+    @include setTransition;
+  }
+
+  &.tiny {
+    font-size: 0.6rem;
+  }
+  &.small {
+    font-size: 0.75rem;
+  }
+  &.large {
+    font-size: 1.25rem;
+  }
+
+  &.expanded {
+    display: block;
+    width: 100%;
+    margin-right: 0;
+    margin-left: 0;
+  }
+
+
+  // Custom class
+
+  /* example*/
+  &_primary {
+    @extend .button;
+    // CSS
+  }
+
+}
