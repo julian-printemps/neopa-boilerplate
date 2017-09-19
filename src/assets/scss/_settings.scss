@@ -33,7 +33,12 @@ $grid-container-max: $global-width;
 $block-grid-max: 8;
 
 
-// 4. Theming
+// 4. CSS Grid
+// -----------
+$nb-columns: 12;
+
+
+// 5. Theming
 // -----------
 $mobile-medium: "(max-width: 640px)";
 

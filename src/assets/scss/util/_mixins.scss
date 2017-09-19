@@ -177,3 +177,78 @@
     @content;
   }
 }
+
+
+
+
+/*
+** CSS Grid Maker
+*/
+@mixin grid-column-list($breakpoint) {
+  @for $y from 1 through $nb-columns {
+    @for $i from 1 through $nb-columns {
+      @if $breakpoint == 'medium' {
+        .column.#{$breakpoint}-#{$y}-#{$i} {
+          @include medium {
+            @if $i == $nb-columns {
+              $endCol: -1;
+              grid-column: #{$y} / #{$endCol};
+            } @else {
+              $endCol: $i + 1;
+              grid-column: #{$y} / #{$endCol};
+            }
+          }
+        }
+      } @else if $breakpoint == 'large' {
+        .column.#{$breakpoint}-#{$y}-#{$i} {
+          @include large {
+            @if $i == $nb-columns {
+              $endCol: -1;
+              grid-column: #{$y} / #{$endCol};
+            } @else {
+              $endCol: $i + 1;
+              grid-column: #{$y} / #{$endCol};
+            }
+          }
+        }
+      } @else {
+        @if $i == $nb-columns {
+          $endCol: -1;
+          .column.#{$breakpoint}-#{$y}-#{$i} { grid-column: #{$y} / #{$endCol}; }
+        } @else {
+          $endCol: $i + 1;
+          .column.#{$breakpoint}-#{$y}-#{$i} { grid-column: #{$y} / #{$endCol}; }
+        }
+      }
+    }
+  }
+
+  @if $breakpoint == 'medium' {
+    @include medium {
+      // .column.#{$breakpoint}-shrink { grid-column: auto; }
+      .column.#{$breakpoint}-auto { grid-column: auto; }
+    }
+  } @else if $breakpoint == 'large' {
+    @include large {
+      // .column.#{$breakpoint}-shrink { grid-column: auto; }
+      .column.#{$breakpoint}-auto { grid-column: auto; }
+    }
+  } @else {
+    // .column.shrink { grid-column: auto; }
+    .column.auto { grid-column: auto; }
+  }
+}
+
+@mixin grid-maker {
+  @include grid-column-list('small');
+  @include medium {
+    @include grid-column-list('medium');
+  }
+  @include large {
+    @include grid-column-list('large');
+  }
+}
+
+@mixin defaultGridTemplate {
+  grid-template-columns: repeat(#{$nb-columns}, 1fr);
+}

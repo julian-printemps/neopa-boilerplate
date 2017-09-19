@@ -123,6 +123,12 @@
 
 
 // Text align
+.text {
+  &-center { text-align: center; }
+  &-left { text-align: left; }
+  &-right { text-align: right; }
+}
+
 .medium-text-center {
   @include medium {
     text-align: center;

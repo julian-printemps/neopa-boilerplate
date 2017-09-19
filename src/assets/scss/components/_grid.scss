@@ -1,0 +1,100 @@
+.wrapper {
+  width: 100%;
+  max-width: $global-width;
+  display: grid;
+  margin: 0 auto;
+  grid-gap: 20px;
+  grid-template-columns: 1fr;
+  // grid-template-rows: auto 1fr 1fr 1fr;
+  grid-template-rows: min-content;
+  grid-template-areas:
+    "header"
+    "main"
+    "aside"
+    "footer";
+
+    @include medium {
+      grid-template-columns: 2fr 3fr;
+      grid-template-areas:
+      "header header"
+      "aside main"
+      "aside footer";
+    }
+    @include large {
+      // grid-template-rows: auto;
+      grid-template-rows: repeat(6, min-content);
+      grid-template-columns: 3fr 2fr;
+      grid-template-areas:
+      "main header"
+      "main aside"
+      "main aside"
+      "main aside"
+      "main aside"
+      "main footer";
+    }
+
+
+  &--column {
+    background-color: #ccc;
+    color: $white;
+    // padding: rem-calc(20);
+
+    &.header {
+      grid-area: header;
+    }
+    &.main {
+      grid-area: main;
+    }
+    &.aside {
+      grid-area: aside;
+    }
+    &.footer {
+      grid-area: footer;
+    }
+  }
+}
+
+
+// Grid content
+.grid {
+  @include grid-maker;
+  
+  width: 100%;
+  max-width: $global-width;
+  display: grid;
+  grid-gap: 20px;
+  grid-template-rows: auto;
+  @include defaultGridTemplate;
+
+  & .column {
+    margin: 0;
+    padding: rem-calc(20);
+    background-color: $white;
+    color: $black;
+  }
+}
+
+
+
+// grid context
+.grid {
+
+  // header
+  &.header {
+    grid-template-columns: auto 1fr;
+    @include large {
+      grid-template-columns: 1fr auto;
+    }
+  }
+
+  // aside
+  &.aside {
+    grid-template-columns: 1fr;
+    @include medium {
+      grid-template-columns: 1fr auto;
+    }
+    @include large {
+      @include defaultGridTemplate;
+    }
+  }
+}
