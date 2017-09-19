@@ -1,3 +1,10 @@
+/*
+** CSS Grid
+*/
+
+// Define the main architecture
+// header - main - aside - footer
+
 .wrapper {
   width: 100%;
   max-width: $global-width;
@@ -5,7 +12,6 @@
   margin: 0 auto;
   grid-gap: 20px;
   grid-template-columns: 1fr;
-  // grid-template-rows: auto 1fr 1fr 1fr;
   grid-template-rows: min-content;
   grid-template-areas:
     "header"
@@ -21,7 +27,6 @@
       "aside footer";
     }
     @include large {
-      // grid-template-rows: auto;
       grid-template-rows: repeat(6, min-content);
       grid-template-columns: 3fr 2fr;
       grid-template-areas:
@@ -35,9 +40,7 @@
 
 
   &--column {
-    background-color: #ccc;
     color: $white;
-    // padding: rem-calc(20);
 
     &.header {
       grid-area: header;
@@ -55,30 +58,21 @@
 }
 
 
-// Grid content
 .grid {
+  /*
+  ** Grid maker
+  */
   @include grid-maker;
-  
-  width: 100%;
-  max-width: $global-width;
-  display: grid;
-  grid-gap: 20px;
-  grid-template-rows: auto;
-  @include defaultGridTemplate;
 
   & .column {
-    margin: 0;
-    padding: rem-calc(20);
-    background-color: $white;
+    background-color: $grey_01;
     color: $black;
   }
-}
 
-
-
-// grid context
-.grid {
-
+  /*
+  ** Grid context
+  *** better control of the subgrid elements
+  */
   // header
   &.header {
     grid-template-columns: auto 1fr;

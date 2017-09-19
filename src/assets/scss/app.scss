@@ -12,4 +12,10 @@
 
 // Neopa components
 @import 'util/util';
+@import 'components/grid';
 @import 'components/buttons';
+
+// custom
+@import 'components/menu';
+@import 'components/header';
+@import 'components/aside';

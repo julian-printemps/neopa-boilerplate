@@ -239,6 +239,11 @@
   }
 }
 
+@mixin defaultGridTemplate {
+  grid-template-columns: repeat(#{$nb-columns}, 1fr);
+}
+
+
 @mixin grid-maker {
   @include grid-column-list('small');
   @include medium {
@@ -247,8 +252,17 @@
   @include large {
     @include grid-column-list('large');
   }
-}
 
-@mixin defaultGridTemplate {
-  grid-template-columns: repeat(#{$nb-columns}, 1fr);
+  width: 100%;
+  max-width: $global-width;
+  display: grid;
+  // grid-gap: $grid-gap;
+  grid-gap: rem-calc($grid-gap);
+  grid-template-rows: auto;
+  @include defaultGridTemplate;
+
+  & .column {
+    margin: 0;
+    padding: rem-calc($grid-gap);
+  }
 }
