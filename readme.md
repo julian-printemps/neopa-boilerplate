@@ -1,4 +1,4 @@
-# junkichi
+# Neopa Boilerplate
 
 > A Vue.js project
 
